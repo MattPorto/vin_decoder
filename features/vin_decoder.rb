@@ -1,7 +1,6 @@
 # vin = ARGV[0]
 def transliterate(char)
-  char_list = "0123456789.ABCDEFGH..JKLMN.P.R..STUVWXYZ".split('')
-  char_list.index(char) % 10
+  get_char_list.index(char) % 10
 end
 
 def calculate_check_digit(vin)
@@ -15,6 +14,16 @@ def calculate_check_digit(vin)
   end
 
   map[sum % 11]
+end
+
+def valid_vin(vin)
+  valid = true
+  vin.split('').each { |c| valid = false unless get_char_list.include?(c) }
+  valid
+end
+
+def get_char_list
+  "0123456789.ABCDEFGH..JKLMN.P.R..STUVWXYZ".split('')
 end
 # chk_digit = calculate_check_digit(vin)
 # puts "You gave me:\t#{vin}"

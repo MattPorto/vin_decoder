@@ -9,4 +9,15 @@ class TestVinDecoder < Test::Unit::TestCase
     chk_digit = calculate_check_digit(vin)
     assert_equal chk_digit.to_s, vin[8], "check digit should return #{vin[8]}"
   end
+
+  def test_valid_vin
+    # should validate vin chars
+    valid_vin = "2NKWL00X16M149834"
+    validation = valid_vin(valid_vin)
+    assert_true(validation, "Vin is valid")
+
+    invalid_vin = "INKDLUOX33R385016"
+    validation = valid_vin(invalid_vin)
+    assert_false(validation, "Vin is invalid")
+  end
 end
