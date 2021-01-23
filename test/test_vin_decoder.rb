@@ -22,6 +22,7 @@ class TestVinDecoder < Test::Unit::TestCase
   end
 
   def test_generate_valid_vin
+    # generate new verified vins based in a invalid one
     new_vin = generate_valid_vin(@invalid_vin)
     chk_digit_validation = calculate_check_digit(new_vin)
     valid_confirmation = valid_vin(new_vin)
