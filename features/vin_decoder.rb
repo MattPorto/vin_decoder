@@ -1,13 +1,13 @@
+# here we can add more methods to improve UX
+# ex: methods that returns vehicle information based on decoded VIN
+
 def calculate_check_digit(vin)
   map = (0..10).to_a.append('X')
   map.delete(8) # [0,1,2,3,4,5,6,7,9,10,'X']
   weights = [8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2]
   sum = 0
 
-  vin.split('').each_with_index do |char, i|
-    sum += transliterate(char) * weights[i]
-  end
-
+  vin.split('').each_with_index {|char, i| sum += transliterate(char) * weights[i]}
   map[sum % 11]
 end
 
@@ -25,6 +25,8 @@ def generate_valid_vin(invalid_vin)
 end
 
 def valid_vin(vin)
+  # this method can be improved to return wrong chars on VIN
+  # so we can print it out and point where the VIN is wrong
   valid = true
   vin.split('').each { |char| valid = false unless get_char_list.include?(char) }
   valid
